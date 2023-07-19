@@ -8,7 +8,7 @@ def NUF(paginas, capacidade):
     for pagina in paginas:
         if pagina not in memoria:
             if len(memoria) >= capacidade:
-                print(contagem_acessos)
+                # print(contagem_acessos)
                 menor_contagem = min(contagem_acessos.values())
                 menos_utilizada = [p for p in memoria if contagem_acessos[p] == menor_contagem]
                 vitima = menos_utilizada[0]
@@ -26,5 +26,5 @@ def NUF(paginas, capacidade):
 paginas = [1, 2, 3, 3, 1, 2, 5, 1, 5, 1, 2, 3, 4, 5]
 capacidade = 3
 
-trocas = NUF(paginas, capacidade)
-print("Total de substituições:", trocas)
+# trocas = NUF(paginas, capacidade)
+# print("Total de substituições:", trocas)
