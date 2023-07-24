@@ -3,7 +3,7 @@ import time
 from processo import *
 
 
-def escalonador_alternancia(processos, fracao_cpu, nome_arquivo, capacidade):  # Escalonador em si
+def escalonador_alternancia(processos, fracao_cpu, nome_arquivo):  # Escalonador em si
     processos_prontos = []
     tempo_total = sum([p.tempo_execucao for p in processos])
     tempo = 0

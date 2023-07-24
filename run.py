@@ -8,8 +8,8 @@ from OTIMO import *
 paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
 capacidade = 3
 
-processos, fracao_cpu = ler_processos("processoLista.txt")
-escalonador_alternancia(processos, fracao_cpu, "processoLista.txt")
+processos, fracao_cpu, capacidade = ler_processos("processoLista.txt")
+escalonador_alternancia(processos, fracao_cpu, "processoLista.txt", capacidade)
 
 # processos, fracao_cpu = ler_processos("test.txt")
 # escalonador_alternancia(processos, fracao_cpu, "test.txt")

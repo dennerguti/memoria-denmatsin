@@ -55,7 +55,7 @@ def ler_processos():
     return processos, fracao_cpu, capacidade, percentual_alocação
 
 
-def escalonador_prioridade(processos, fracao_cpu, capacidade, percentual):
+def escalonador_alternancia(processos, fracao_cpu, capacidade, percentual):
     processos_prontos = []
     tempo_total = sum([p.tempo_execucao for p in processos])
     tempo = 0
@@ -90,4 +90,4 @@ def escalonador_prioridade(processos, fracao_cpu, capacidade, percentual):
 
 processos, fracao_cpu, capacidade, percentual = ler_processos()
 print(percentual)
-escalonador_prioridade(processos, fracao_cpu, capacidade, percentual)
+escalonador_alternancia(processos, fracao_cpu, capacidade, percentual)

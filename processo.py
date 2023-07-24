@@ -28,22 +28,28 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
     with open(nome_arquivo, 'r') as arquivo:
         linhas = arquivo.readlines()
         primeira_linha = linhas[0].strip().split('|')
-        segunda_linha = linhas[1].strip().split('|')
-        seq_acess_pag_proc = segunda_linha[6].split(' ')
+        # segunda_linha = linhas[1].strip().split('|')
+        # seq_acess_pag_proc = segunda_linha[6].split(' ')
         # print("-----------------------------------------------")
         # print(seq_acess_pag_proc)
         # print("-----------------------------------------------")
         tipo_de_algoritmo = primeira_linha[0]
         fracao_cpu = int(primeira_linha[1])
+
+        política_memória = primeira_linha[2]
+        tamanho_memória = int(primeira_linha[3])
+        tamanho_páginas_molduras = int(primeira_linha[4])
+        percentual_alocação = float(primeira_linha[5])
+        acessos_por_ciclo = int(primeira_linha[6])
+
+        capacidade = (tamanho_memória * percentual_alocação / 100) // tamanho_páginas_molduras
+
         nome_sem_extensao = nome_arquivo.replace(".txt", "")
         print(f"Algoritmo de {nome_sem_extensao}: {tipo_de_algoritmo}")
         print(f"Fração de CPU: {fracao_cpu}")
 
         for linha in linhas[1:]:
             valores = linha.strip().split('|')
-            print("^^^^^^^^^^^^^^^^^^^^^^^^")
-            print(valores[6])
-            print("^^^^^^^^^^^^^^^^^^^^^^^^")
 
             if len(valores) == 7:
                 nome = valores[0]
@@ -52,15 +58,19 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
                 prioridade = int(valores[3])
                 uid = int(valores[4])
                 qtde_memoria = int(valores[5])
+                seq_acess_pag_proc = valores[6].split(' ')
+
+                # print("^^^^^^^^^^^^^^^^^^^^^^^^")
+                # print(seq_acess_pag_proc)
+                # print("^^^^^^^^^^^^^^^^^^^^^^^^")
                 # seq_acess_pag_proc = valores[6].split(' ')
                 # print(valores[6])
 
                 processo = Processo(nome, pid, tempo_execucao,
-                                    prioridade, uid, qtde_memoria)
+                                    prioridade, uid, qtde_memoria, seq_acess_pag_proc)
                 processos.append(processo)
 
-    return processos, fracao_cpu
-
+    return processos, fracao_cpu, capacidade
 
 def ultimo_processo(nome_arquivo):  # Adiciona o ultimo processo à fila
     processos = []
