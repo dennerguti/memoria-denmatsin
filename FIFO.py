@@ -14,7 +14,7 @@ def fifo(paginas, capacidade):
             memoria.remove(memoria[0])
             memoria.append(pagina)
 
-        trocas += 1
+            trocas += 1
 
     return trocas
 

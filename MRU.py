@@ -24,7 +24,9 @@ def mru(paginas, capacidade):
 
     return total_trocas
 
-paginas = [1, 2, 3, 3, 1, 2, 5, 1, 5, 1, 2, 3, 4, 5]
+
+
+paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
 capacidade = 3
 
 trocas = mru(paginas, capacidade)
