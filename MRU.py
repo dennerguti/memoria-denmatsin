@@ -10,7 +10,7 @@ def mru(paginas, capacidade):
             if len(memoria) >= capacidade:
                 
                 paginas_menos_utilizadas = [p for p in memoria if contador_paginas[p] == min(contador_paginas[p] for p in memoria)]
-                print(contador_paginas)
+                # print(contador_paginas)
                 pagina_menor_valor = min(paginas_menos_utilizadas)
                 memoria.remove(pagina_menor_valor)
 
@@ -29,5 +29,5 @@ def mru(paginas, capacidade):
 paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
 capacidade = 3
 
-trocas = mru(paginas, capacidade)
-print("Total de trocas realizadas:", trocas)
+# trocas = mru(paginas, capacidade)
+# print("Total de trocas realizadas:", trocas)

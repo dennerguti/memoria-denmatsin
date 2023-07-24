@@ -1,0 +1,9 @@
+alternancia|4
+processo-0|0|4|93|4|3072
+processo-1|1|24|18|4|2048
+processo-2|2|32|80|6|2048
+processo-3|3|16|10|4|4096
+processo-4|4|4|8|9|2048
+processo-5|5|36|3|9|4096
+processo-6|6|12|26|7|5120
+processo-7|7|36|98|5|5120
