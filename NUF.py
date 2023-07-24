@@ -24,8 +24,8 @@ def NUF(paginas, capacidade):
     return trocas
 
 
-paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
-capacidade = 3
+#paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
+#capacidade = 3
 
 # trocas = NUF(paginas, capacidade)
 # print("Total de substituições:", trocas)
