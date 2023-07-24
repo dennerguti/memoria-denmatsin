@@ -1,5 +1,5 @@
 class Processo:  # Atribui as informações do processo
-    def __init__(self, nome, pid, tempo_execucao, prioridade, uid, qtde_memoria, sequenciaAcessoPaginasProcesso):
+    def __init__(self, nome, pid, tempo_execucao, prioridade, uid, qtde_memoria):
         self.nome = nome
         self.pid = pid
         self.tempo_execucao = tempo_execucao
@@ -7,7 +7,6 @@ class Processo:  # Atribui as informações do processo
         self.prioridade = prioridade
         self.uid = uid
         self.qtde_memoria = qtde_memoria
-        self.sequenciaAcessoPaginasProcesso = sequenciaAcessoPaginasProcesso
         self.fração_cpu_utilizada = 0
 
     def executar(self):  # Contador do tempo
@@ -28,11 +27,9 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
     with open(nome_arquivo, 'r') as arquivo:
         linhas = arquivo.readlines()
         primeira_linha = linhas[0].strip().split('|')
-        segunda_linha = linhas[1].strip().split('|')
-        seq_acess_pag_proc = segunda_linha[6].split(' ')
-        # print("-----------------------------------------------")
-        # print(seq_acess_pag_proc)
-        # print("-----------------------------------------------")
+        print("-----------------------------------------------")
+        print(primeira_linha)
+        print("-----------------------------------------------")
         tipo_de_algoritmo = primeira_linha[0]
         fracao_cpu = int(primeira_linha[1])
         nome_sem_extensao = nome_arquivo.replace(".txt", "")
@@ -41,20 +38,13 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
 
         for linha in linhas[1:]:
             valores = linha.strip().split('|')
-            print("^^^^^^^^^^^^^^^^^^^^^^^^")
-            print(valores[6])
-            print("^^^^^^^^^^^^^^^^^^^^^^^^")
-
-            if len(valores) == 7:
+            if len(valores) == 6:
                 nome = valores[0]
                 pid = int(valores[1])
                 tempo_execucao = int(valores[2])
                 prioridade = int(valores[3])
                 uid = int(valores[4])
                 qtde_memoria = int(valores[5])
-                # seq_acess_pag_proc = valores[6].split(' ')
-                # print(valores[6])
-
                 processo = Processo(nome, pid, tempo_execucao,
                                     prioridade, uid, qtde_memoria)
                 processos.append(processo)
