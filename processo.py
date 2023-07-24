@@ -19,13 +19,25 @@ class Processo:  # Atribui as informações do processo
         self.fração_cpu_utilizada += 1  # Incrementa a fração de CPU utilizada
 
         if self.tempo_restante <= 0:
+            maisProximoDoOtimo = ""
+            if (self.trocasFIFO == self.trocasMRU or self.trocasFIFO == self.trocasNUF or self.trocasMRU == self.trocasNUF):
+                maisProximoDoOtimo = "EMPATE"
+            elif (self.trocasFIFO < self.trocasMRU and self.trocasFIFO < self.trocasNUF):
+                maisProximoDoOtimo = "FIFO"
+            elif (self.trocasMRU < self.trocasFIFO and self.trocasMRU < self.trocasNUF):
+                maisProximoDoOtimo = "MRU"
+            elif (self.trocasNUF < self.trocasFIFO and self.trocasNUF < self.trocasMRU):
+                maisProximoDoOtimo = "NUF"
+
             print(
                 f"\n-----Processo {self.nome} (PID: {self.pid}) concluído.-----\n" +
                 f" -> Número de trocas FIFO: {self.trocasFIFO}\n" + 
                 f" -> Número de trocas MRU: {self.trocasMRU}\n" + 
                 f" -> Número de trocas NUF: {self.trocasNUF}\n" + 
                 f" -> Número de trocas ÓTIMO: {self.trocasOTIMO}\n" +
-                f"-----------------------------------------------------\n")
+
+                f" -> {self.trocasFIFO} | {self.trocasMRU} | {self.trocasNUF} | {self.trocasOTIMO} | {maisProximoDoOtimo} |" +
+                f"\n-----------------------------------------------------\n")
             return True
 
         return False
