@@ -20,8 +20,8 @@ def otima(paginas, capacidade):
     return trocas
 
 
-paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
-capacidade = 3
+# paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
+# capacidade = 3
 
 # trocas = otima(paginas, capacidade)
 # print("Número total de trocas:", trocas)

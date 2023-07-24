@@ -9,6 +9,10 @@ class Processo:  # Atribui as informações do processo
         self.qtde_memoria = qtde_memoria
         self.sequenciaAcessoPaginasProcesso = sequenciaAcessoPaginasProcesso
         self.fração_cpu_utilizada = 0
+        self.trocasFIFO = 0
+        self.trocasMRU = 0
+        self.trocasNUF = 0
+        self.trocasOTIMO = 0
 
     def executar(self):  # Contador do tempo
         self.tempo_restante -= 1
@@ -16,7 +20,12 @@ class Processo:  # Atribui as informações do processo
 
         if self.tempo_restante <= 0:
             print(
-                f"\n-----Processo {self.nome} (PID: {self.pid}) concluído.-----\n")
+                f"\n-----Processo {self.nome} (PID: {self.pid}) concluído.-----\n" +
+                f" -> Número de trocas FIFO: {self.trocasFIFO}\n" + 
+                f" -> Número de trocas MRU: {self.trocasMRU}\n" + 
+                f" -> Número de trocas NUF: {self.trocasNUF}\n" + 
+                f" -> Número de trocas ÓTIMO: {self.trocasOTIMO}\n" +
+                f"-----------------------------------------------------\n")
             return True
 
         return False

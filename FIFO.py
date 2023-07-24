@@ -1,7 +1,6 @@
 def fifo(paginas, capacidade):
     memoria = []
     trocas = 0
-
     for pagina in paginas:
         if pagina in memoria:
             continue
@@ -18,8 +17,8 @@ def fifo(paginas, capacidade):
 
     return trocas
 
-paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
-capacidade = 3
+# paginas = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
+# capacidade = 3
 
 # faltas_pagina = fifo(paginas, capacidade)
 # print("Total de trocas:", faltas_pagina)

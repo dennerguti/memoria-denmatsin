@@ -1,6 +1,10 @@
 import os
 import time
 from processo import *
+from FIFO import *
+from MRU import *
+from NUF import *
+from OTIMO import *
 
 
 def escalonador_alternancia(processos, fracao_cpu, nome_arquivo, capacidade):  # Escalonador em si
@@ -29,6 +33,22 @@ def escalonador_alternancia(processos, fracao_cpu, nome_arquivo, capacidade):  #
                 print(f"Tempo de CPU: {tempo} segundos")
                 print(
                     f"Tempo restante do processo: {processo_atual.tempo_restante} segundos\n")
+                
+                # paginasTeste = [1, 2, 3, 3, 1, 2, 5, 1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5]
+                # capacidadeTeste = 3
+
+                paginas = processo_atual.sequenciaAcessoPaginasProcesso
+                trocasFIFO = fifo(paginas, capacidade)
+                trocasMRU = mru(paginas, capacidade)
+                trocasNUF = NUF(paginas, capacidade)
+                trocasOTIMO = otima(paginas, capacidade)
+
+                processo_atual.trocasFIFO = trocasFIFO
+                processo_atual.trocasMRU = trocasMRU
+                processo_atual.trocasNUF = trocasNUF
+                processo_atual.trocasOTIMO = trocasOTIMO
+
+
 
                 if processo_atual.fração_cpu_utilizada == fracao_cpu - 1:  # Alternancia entre processos de mesma prioridade
                     processos_prontos.remove(processo_atual)
@@ -49,4 +69,4 @@ def escalonador_alternancia(processos, fracao_cpu, nome_arquivo, capacidade):  #
                 break
 
             tempo += 1
-            time.sleep(100)  # Simulação de passagem de tempo
+            time.sleep(0)  # Simulação de passagem de tempo

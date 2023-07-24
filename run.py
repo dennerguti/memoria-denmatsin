@@ -15,10 +15,10 @@ escalonador_alternancia(processos, fracao_cpu, "processoLista.txt", capacidade)
 # escalonador_alternancia(processos, fracao_cpu, "test.txt")
 
 
-trocasFIFO = fifo(paginas, capacidade)
-trocasMRU = mru(paginas, capacidade)
-trocasNUF = NUF(paginas, capacidade)
-trocasOtimo = otima(paginas, capacidade)
+# trocasFIFO = fifo(paginas, capacidade)
+# trocasMRU = mru(paginas, capacidade)
+# trocasNUF = NUF(paginas, capacidade)
+# trocasOtimo = otima(paginas, capacidade)
 
 # print("Total de trocas FIFO:", trocasFIFO)
 # print("Total de trocas MRU:", trocasMRU)
