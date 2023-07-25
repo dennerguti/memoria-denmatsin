@@ -1,6 +1,6 @@
 from collections import Counter
 
-def mru(paginas, capacidade):
+def mru(paginas, capacidade): # MENOS RECENTEMENTE USADO
     memoria = []
     contador_paginas = Counter()
     total_trocas = 0
