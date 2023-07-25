@@ -43,10 +43,10 @@ def escalonador_alternancia(processos, fracao_cpu, nome_arquivo, capacidade):  #
                 trocasNUF = NUF(paginas, capacidade)
                 trocasOTIMO = otima(paginas, capacidade)
 
-                processo_atual.trocasFIFO = trocasFIFO
-                processo_atual.trocasMRU = trocasMRU
-                processo_atual.trocasNUF = trocasNUF
-                processo_atual.trocasOTIMO = trocasOTIMO
+                processo_atual.trocasFIFO += trocasFIFO
+                processo_atual.trocasMRU += trocasMRU
+                processo_atual.trocasNUF += trocasNUF
+                processo_atual.trocasOTIMO += trocasOTIMO
 
 
 
