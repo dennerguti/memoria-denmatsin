@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def NUF(paginas, capacidade):
+def NUF(paginas, capacidade): # NÃO USADO FREQUENTEMENTE
     memoria = []
     contagem_acessos = defaultdict(int)
     trocas = 0

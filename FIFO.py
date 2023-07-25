@@ -1,4 +1,4 @@
-def fifo(paginas, capacidade):
+def fifo(paginas, capacidade): # FIRST IN FIRST OUT
     memoria = []
     trocas = 0
     for pagina in paginas:
