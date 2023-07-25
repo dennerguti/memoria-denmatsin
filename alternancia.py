@@ -1,6 +1,10 @@
 import os
 import time
 from processo import *
+from FIFO import *
+from MRU import *
+from NUF import *
+from OTIMO import *
 
 
 def escalonador_alternancia(processos, fracao_cpu, nome_arquivo):  # Escalonador em si
