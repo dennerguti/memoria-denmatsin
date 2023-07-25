@@ -1,3 +1,8 @@
+from FIFO import *
+from MRU import *
+from NUF import *
+from OTIMO import *
+
 class Processo:  # Atribui as informações do processo
     def __init__(self, nome, pid, tempo_execucao, prioridade, uid, qtde_memoria, sequenciaAcessoPaginasProcesso):
         self.nome = nome
@@ -18,26 +23,40 @@ class Processo:  # Atribui as informações do processo
         self.tempo_restante -= 1
         self.fração_cpu_utilizada += 1  # Incrementa a fração de CPU utilizada
 
+
         if self.tempo_restante <= 0:
-            maisProximoDoOtimo = ""
-            if (self.trocasFIFO == self.trocasMRU or self.trocasFIFO == self.trocasNUF or self.trocasMRU == self.trocasNUF):
-                maisProximoDoOtimo = "EMPATE"
-            elif (self.trocasFIFO < self.trocasMRU and self.trocasFIFO < self.trocasNUF):
-                maisProximoDoOtimo = "FIFO"
-            elif (self.trocasMRU < self.trocasFIFO and self.trocasMRU < self.trocasNUF):
-                maisProximoDoOtimo = "MRU"
-            elif (self.trocasNUF < self.trocasFIFO and self.trocasNUF < self.trocasMRU):
-                maisProximoDoOtimo = "NUF"
+            paginas = self.sequenciaAcessoPaginasProcesso
+            memoria = self.qtde_memoria
 
-            print(
-                f"\n-----Processo {self.nome} (PID: {self.pid}) concluído.-----\n" +
-                f" -> Número de trocas FIFO: {self.trocasFIFO}\n" + 
-                f" -> Número de trocas MRU: {self.trocasMRU}\n" + 
-                f" -> Número de trocas NUF: {self.trocasNUF}\n" + 
-                f" -> Número de trocas ÓTIMO: {self.trocasOTIMO}\n" +
+            trocasFIFO = fifo(paginas, memoria)
+            trocasMRU = mru(paginas, memoria)
+            trocasNUF = NUF(paginas, memoria)
+            trocasOTIMO = otima(paginas, memoria)
 
-                f" -> {self.trocasFIFO} | {self.trocasMRU} | {self.trocasNUF} | {self.trocasOTIMO} | {maisProximoDoOtimo} |" +
-                f"\n-----------------------------------------------------\n")
+            self.trocasFIFO = trocasFIFO
+            self.trocasMRU = trocasMRU
+            self.trocasNUF = trocasNUF
+            self.trocasOTIMO = trocasOTIMO
+
+            # maisProximoDoOtimo = ""
+            # if (self.trocasFIFO == self.trocasMRU or self.trocasFIFO == self.trocasNUF or self.trocasMRU == self.trocasNUF):
+            #     maisProximoDoOtimo = "EMPATE"
+            # elif (self.trocasFIFO < self.trocasMRU and self.trocasFIFO < self.trocasNUF):
+            #     maisProximoDoOtimo = "FIFO"
+            # elif (self.trocasMRU < self.trocasFIFO and self.trocasMRU < self.trocasNUF):
+            #     maisProximoDoOtimo = "MRU"
+            # elif (self.trocasNUF < self.trocasFIFO and self.trocasNUF < self.trocasMRU):
+            #     maisProximoDoOtimo = "NUF"
+
+            # print(
+            #     f"\n-----Processo {self.nome} (PID: {self.pid}) concluído.-----\n" +
+            #     f" -> Número de trocas FIFO: {self.trocasFIFO}\n" + 
+            #     f" -> Número de trocas MRU: {self.trocasMRU}\n" + 
+            #     f" -> Número de trocas NUF: {self.trocasNUF}\n" + 
+            #     f" -> Número de trocas ÓTIMO: {self.trocasOTIMO}\n" +
+
+            #     f" -> {self.trocasFIFO} | {self.trocasMRU} | {self.trocasNUF} | {self.trocasOTIMO} | {maisProximoDoOtimo} |" +
+            #     f"\n-----------------------------------------------------\n")
             return True
 
         return False
@@ -63,7 +82,7 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
         percentual_alocação = float(primeira_linha[5])
         acessos_por_ciclo = int(primeira_linha[6])
 
-        capacidade = (tamanho_memória * percentual_alocação / 100) // tamanho_páginas_molduras
+        # capacidade = (tamanho_memória) // tamanho_páginas_molduras
 
         nome_sem_extensao = nome_arquivo.replace(".txt", "")
         print(f"Algoritmo de {nome_sem_extensao}: {tipo_de_algoritmo}")
@@ -78,7 +97,7 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
                 tempo_execucao = int(valores[2])
                 prioridade = int(valores[3])
                 uid = int(valores[4])
-                qtde_memoria = int(valores[5])
+                qtde_memoria = int(valores[5])*(percentual_alocação/100)//tamanho_páginas_molduras
                 seq_acess_pag_proc = valores[6].split(' ')
 
                 # print("^^^^^^^^^^^^^^^^^^^^^^^^")
@@ -91,7 +110,7 @@ def ler_processos(nome_arquivo):  # Le o arquivo e transforma ele em processo
                                     prioridade, uid, qtde_memoria, seq_acess_pag_proc)
                 processos.append(processo)
 
-    return processos, fracao_cpu, capacidade
+    return processos, fracao_cpu # capacidade
 
 def ultimo_processo(nome_arquivo):  # Adiciona o ultimo processo à fila
     processos = []
